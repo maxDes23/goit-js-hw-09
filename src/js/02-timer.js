@@ -1,6 +1,9 @@
-// 02-timer.js
+
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+import Notiflix from 'notiflix';
+
+Notiflix.Notify.init();
 
 const options = {
   enableTime: true,
@@ -10,14 +13,15 @@ const options = {
   onClose(selectedDates) {
     const selectedDate = selectedDates[0];
     if (selectedDate > new Date()) {
-      startBtn.disabled = false;
+      startButton.disabled = false;
       countdownToDate = selectedDate;
     } else {
-      window.alert('Please choose a date in the future');
-      startBtn.disabled = true;
+      Notiflix.Notify.failure('Please choose a date in the future');
+      startButton.disabled = true;
     }
   },
 };
+
 
 const timerFields = {
   days: document.querySelector('[data-days]'),
