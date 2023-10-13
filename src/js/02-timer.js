@@ -13,11 +13,11 @@ const options = {
   onClose(selectedDates) {
     const selectedDate = selectedDates[0];
     if (selectedDate > new Date()) {
-      startButton.disabled = false;
+      startBtn.disabled = false;
       countdownToDate = selectedDate;
     } else {
       Notiflix.Notify.failure('Please choose a date in the future');
-      startButton.disabled = true;
+      startBtn.disabled = true;
     }
   },
 };
