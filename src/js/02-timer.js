@@ -1,4 +1,3 @@
-
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
@@ -22,7 +21,6 @@ const options = {
   },
 };
 
-
 const timerFields = {
   days: document.querySelector('[data-days]'),
   hours: document.querySelector('[data-hours]'),
@@ -31,18 +29,23 @@ const timerFields = {
 };
 
 const startBtn = document.querySelector('[data-start]');
+startBtn.disabled = true;
 const datetimePicker = document.querySelector('#datetime-picker');
 const timerContainer = document.querySelector('.timer');
 let countdownToDate;
 
 function startTimer() {
   startBtn.disabled = true;
-
+  datetimePicker.disabled = true;
+  let timerInterval;
   const updateTimer = () => {
-    const timeLeft = countdownToDate - new Date();
+    let timeLeft = countdownToDate - new Date();
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
       timeLeft = 0;
+      Notiflix.Notify.success('Countdown has finished.');
+      startBtn.disabled = false;
+      datetimePicker.disabled = false;
     }
 
     const { days, hours, minutes, seconds } = convertMs(timeLeft);
@@ -53,7 +56,7 @@ function startTimer() {
   };
 
   updateTimer();
-  const timerInterval = setInterval(updateTimer, 1000);
+  timerInterval = setInterval(updateTimer, 1000);
 }
 
 function convertMs(ms) {

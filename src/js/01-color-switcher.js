@@ -8,6 +8,8 @@ const startBtn = document.querySelector('[data-start]');
 const stopBtn = document.querySelector('[data-stop]');
 let intervalId = null;
 
+stopBtn.disabled = true;
+
 startBtn.addEventListener('click', () => {
   startBtn.disabled = true;
   stopBtn.disabled = false;
